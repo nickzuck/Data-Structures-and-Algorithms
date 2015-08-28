@@ -52,7 +52,7 @@ int main ()
 		cin >> w[i] >> v[i] ; 
 	}
 	
-	cout << knapsack(v , w , n , maxW) ;
+	cout << knapsack(v , w , n , maxW) << endl;
 
 return 0 ; 
 }
