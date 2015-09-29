@@ -19,10 +19,10 @@ void build (int node , int start , int end)
         int mid = (start + end) / 2 ; 
         
         //Perfom build on the left subtree
-        build(2*node  , start , mid) ; 
+        build(node*2  , start , mid) ; 
     
         //Perfom build on the right subtree
-        build(2*node + 1 , mid+1 , end) ; 
+        build(node*2 + 1 , mid+1 , end) ; 
 
         //internal nodes will have the sum of both of its children
         tree[node] = tree[2*node] + tree[2*node+1] ;
@@ -37,10 +37,10 @@ int main ()
     for (i = 0 ; i<n ; i++)
         cin >> A[i]; 
 
-    build(0 , 0 , n-1); // node , start , end 
+    build(1 , 0 , n-1); // node , start , end 
     
     cout << "The array corresponding to segment tree is\n" ; 
-    for (i = 0 ; i < 2*n-1 ; i++)
+    for (i = 1 ; i <= 2*n-1 ; i++)
         cout << tree[i] << " "; 
 
     cout << "\n" ; 
