@@ -4,6 +4,7 @@
 
 #define MAX 20
 
+using namespace std ;
 // total number of nodes for an array of n elements  = 2*n - 1 
 
 int A[MAX] , tree[2*MAX +1] ; 
@@ -30,5 +31,18 @@ void build (int node , int start , int end)
 
 int main ()
 {
+    int n,i ;
+    cin >> n ;
+
+    for (i = 0 ; i<n ; i++)
+        cin >> A[i]; 
+
+    build(0 , 0 , n-1); // node , start , end 
+    
+    cout << "The array corresponding to segment tree is\n" ; 
+    for (i = 0 ; i < 2*n-1 ; i++)
+        cout << tree[i] << " "; 
+
+    cout << "\n" ; 
 return 0 ;
 }
