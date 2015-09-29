@@ -29,6 +29,51 @@ void build (int node , int start , int end)
     }
 }
 
+
+//idx is the index where update is to be performed
+//value is the value to be updated 
+void update (int node , int start , int end , int idx , int value) {
+    if  (start == end){
+        //leaf node ..simply update the value of the arrray 
+        A[idx] += val ; 
+        tree[node] += val ; 
+    }
+    else{
+        int mid  = (start + end)/2 ; 
+
+        //Left subtree case
+        if (start <= idx && idx<= mid) {
+            update(2* node , start , mid ,idx , value) ; 
+        }
+
+        //Right subtree case
+        else{
+            update(2*node +1 , mid+1 , end , idx ,value) ;
+        }
+
+        //updating the internal node accordingly
+        tree[node] = tree[2*node] + tree[2*node +1]; 
+    }
+}
+
+int query(int node , int start , int end , int l , int r) {
+    
+    //range represented by node is completely outside 
+    if (r < start ||  end < l ){
+        return 0 ;
+    }
+
+    //range represented by node is completely inside the node
+    if (l < = start && end  <= r){
+        return tree[node] ;
+    }
+
+    //else : range represented by node is partially inside and partially outside the given range
+    int mid = (start + end)/2 ; 
+    int p1 = query(2* node , start , mid , l , r) ; 
+    int p2 = query(2*node +1 , mid+1 , end , l , r) ;
+    return (p1 + p2) ;
+}
 int main ()
 {
     int n,i ;
