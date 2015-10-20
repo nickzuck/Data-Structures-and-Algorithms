@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string.h>
 #include<algorithm>
+#include<stack>
 
 #define MAX 100
 
@@ -55,17 +56,22 @@ return 0 ;
 }
 
 void printLCS(int i , int j){
-	if (i == 0 || j == 0 ){
-		return ; 
-	}
+	stack <char> s ; 
+	while(i>0 && j>0){
+		if (first[i-1] == second[j-1]){
+			s.push(first[i-1]);
+			i-- ; 
+			j-- ;
+		}
+		else if (dp[i-1][j] > dp[i][j-1])	
+			i-- ;
+		else 
+			j-- ; 
 
-	else if (dp[i][j] == dp[i-1][j-1]){
-		printLCS(i-1 , j-1) ;
-		cout << first[i-1] ;
+	
+	}			
+	while(!s.empty()){
+		cout << s.top() ; 
+		s.pop();
 	}
-
-	else if (dp[i][j] == dp[i-1][j])
-		printLCS(i-1 , j) ; 
-	else
-		printLCS(i , j-1) ; 
 }
