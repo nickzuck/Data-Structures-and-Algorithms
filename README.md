@@ -12,7 +12,7 @@ In order to contribute to this repo
 
 
 <B>Issues</B><br/>
-If you find any issues or the way in which code quality can be improved you can report the issue and I will try to fix as soon as possible.
+If you find any issues or the way in which code quality can be improved you can report the issue and I will try to fix as soon as possible.<b>The above code works well in C++11 environment or similiar</b>.If you still feel that something needs to be changed or update. Don't hesitate to tease me with the issue button on the right side of this repo 
 And yes you can also contribute to better code by mailing me withe above given <A href = '#mail'>mail id</A>
 
 HAPPY CODING ! 
