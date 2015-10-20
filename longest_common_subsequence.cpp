@@ -1,51 +1,71 @@
 #include<iostream>
+#include<string.h>
 #include<algorithm>
-#include<cstring>
 
-//#define MAX 10002
+#define MAX 100
 
 using namespace std ;
 
-int max(int a , int b)
-{
-	
-	return (a > b)? a : b;
-}
+char first[MAX], second[MAX] ; 
+int dp[MAX][MAX] ; 
 
-int calculate (string a , string b , int lena , int lenb)
-{
-	//cout << a << " " << b ;
-	int lcs[lena+1][lenb+1] ;
-	int i,j;
-        for(i=0;i<=lenb;i++)
-            lcs[0][i]=0;
-        for(i=0;i<=lena;i++)
-            lcs[i][0]=0;
-	for (i = 1 ;i<= lena ; i++){
-		for (j = 1 ; j<= lenb ; j++){ 
-			if (a[i-1] == b[j-1])
-			{	lcs[i][j] = lcs[i-1][j-1] + 1 ;
-                                cout<<a[i-1]<<endl;
-                        }
-			else
-				lcs[i][j] = max(lcs[i-1][j] , lcs[i][j-1]) ;
-		}
-	}
-return lcs[lena][lenb] ;
-}
-
+void printLCS(int , int);
 
 int main ()
 {
-	//char a[MAX], b[MAX] ; 
-	int lena , lenb ; 
-	string a,b;
-	cin >> a ;
-	cin >> b;
+	int len_first , len_second , i  , j ; 
+
+	//getting the input
+	cout << "Enter the first string " ;
+	cin >> first ; 
+	cout << "Enter the second string " ;
+	cin >> second ; 
 	
-	lena = a.length() ; 
-	lenb = b.length() ;
-	
-	cout << calculate (a , b , lena , lenb) << endl;
+
+	//storing the length of the strings 
+	len_first = strlen(first) ;
+ 	len_second = strlen(second) ;
+
+
+	//setting up the dp parameters
+	for(i = 1 ; i<=len_first; i++){
+		dp[i][0] = 0 ; 
+	}
+
+	for(j = 1; j<=len_second ; j++){
+		dp[0][j] = 0 ; 
+	}
+
+
+	//making the dp array in bottom up manner
+	for(i = 1 ; i<=len_first ;i++){
+		for(j = 1 ; j<=len_second ;j++){
+			if(first[i-1] == second[j-1]){
+				dp[i][j] = dp[i-1][j-1] + 1;
+			}
+			else{
+				dp[i][j] = max(dp[i-1][j] , dp[i][j-1]) ;
+			}
+		}
+	}
+	cout << "The length of LCS = " << dp[len_first][len_second] ;
+	cout << "\nLCS : " ;
+	printLCS(len_first , len_second) ;
 return 0 ; 
+}
+
+void printLCS(int i , int j){
+	if (i == 0 || j == 0 ){
+		return ; 
+	}
+
+	else if (dp[i][j] == dp[i-1][j-1]){
+		printLCS(i-1 , j-1) ;
+		cout << first[i-1] ;
+	}
+
+	else if (dp[i][j] == dp[i-1][j])
+		printLCS(i-1 , j) ; 
+	else
+		printLCS(i , j-1) ; 
 }
