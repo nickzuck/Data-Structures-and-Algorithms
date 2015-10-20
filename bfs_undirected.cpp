@@ -1,4 +1,3 @@
-//[UNTESTED] [COMPILED]
 /*For un-directed graph*/
 #include<iostream>
 #include<vector>
