@@ -1,4 +1,4 @@
-[UNTESTED] [COMPILED]
+//[UNTESTED] [COMPILED]
 /*For un-directed graph*/
 #include<iostream>
 #include<vector>
@@ -19,17 +19,21 @@ void initialize(int  nodes){
 }
 
 void bfs(int current){
-	if(visited[current] == false){
-		for(int i = 0; i<adj[current].size() ; i++){
-			if (visited[i] == false){
-				q.push(i) ;
+	q.push(current) ;
+	cout << current << "\t" ;
+	visited[current]  = true ;
+	while (!q.empty()){
+		int v = q.front();
+		q.pop() ;
+	
+		for(int i = 0; i<adj[v].size() ; i++){
+			if (visited[adj[v][i]] == false){
+				q.push(adj[v][i]);
+				cout << adj[v][i] << "\t" ; 
+				visited[adj[v][i]] = true ;
 			}
 		}
 	}
-	int next = q.front(); 
-	q.pop();
-	if (visited[next] == false)
-		bfs(next) ;
 }
 int main ()
 {
@@ -50,9 +54,9 @@ int main ()
 	initialize(nodes) ;
 	
 	cout << "Breadth first traversal\n";
-	for (int i = 1 ; i<=nodes ;i++){
-		bfs(i) ;
-	}	
+	//for (int i = 1 ; i<=nodes ;i++){
+		bfs(1) ;
+	//}	
 	
 return 0 ; 
 }
