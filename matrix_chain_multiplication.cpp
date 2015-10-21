@@ -27,7 +27,9 @@ void matrix_chain_order(int p [] , int n ){
 		}
 		
 	}
-//return m and s ;
+	cout << m[1][n] << endl; 
+
+	//print_optimal_parens()
 }
 
 int main()
