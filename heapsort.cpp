@@ -30,6 +30,14 @@ void maxheapify(int a[] , int i , int n) {
 		max-heapify(a , largest , n) ; 
 	}
 }
+
+/*We can use the procedure maxheapify in a bottom up manner to convert the array into max-heap.So to build heap we need to use the maxheapify procedure from a.length/2 downto 1 */
+
+void build_maxheapify(int a[]  , int n){
+	for(int i = n/2 ; i>=1 ; i--){
+		maxheapify(a , i , n) ;
+	}
+}
 int main()
 {
  	int i , n , arr[MAX] ; 
