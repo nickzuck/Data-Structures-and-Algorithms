@@ -6,8 +6,21 @@
 
 using namespace std ;
 
+int s[MAX][MAX] ;
+
+void print_optimal_parens(int i , int j){
+	if (i == j )
+		cout << "A" ; 
+	else {
+		cout << "(" ; 
+		print_optimal_parens(i , s[i][j]) ; 
+		print_optimal_parens(s[i][j] + 1 , j) ;
+		cout << ")" ; 
+	}
+}
+
 void matrix_chain_order(int p [] , int n ){
-	int m[MAX][MAX], s[MAX][MAX] ; 
+	int m[MAX][MAX] ; 
 	int i , j , k , l ,q; 
 	for (i = 1 ; i<=n ; i++){
 		m[i][i] = 0  ; 
@@ -28,8 +41,7 @@ void matrix_chain_order(int p [] , int n ){
 		
 	}
 	cout << m[1][n] << endl; 
-
-	//print_optimal_parens()
+	print_optimal_parens(1,n) ; 
 }
 
 int main()
