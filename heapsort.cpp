@@ -42,6 +42,14 @@ void build_maxheap(int *a , int n){
 	}
 }
 
+
+void heapsort(int *a , int n){
+	int i , temp ; 
+	for (i=  n ; i>=2 ;i--){
+		swap(a[i], a[1]);
+		max_heapify(a, 1, i - 1);
+	}
+}
 int main ()
 {	
 	int arr[MAX] , n ,i;
@@ -52,17 +60,12 @@ int main ()
 		cin >> arr[i] ;
 	}
 
-	cout <<"Entered array\n" ;
-	for (int i = 1 ; i<= n ; i++){
-		cout << arr[i] << "\t" ;
-	}
-	cout << endl ;
-
 	build_maxheap(arr , n) ;
 
-	cout << "after build_maxheap\n" ;
-	for (int i = 1 ; i<= n ; i++){
-		cout << arr[i] << "\t" ;
-	}
+	heapsort(arr , n); 
+	cout << "ouput after heapsort\n" ;
+	for (i = 1 ; i<=n ; i++)
+		cout <<arr[i] << " " ;
+	cout << endl;
 return 0 ; 
 }
