@@ -35,6 +35,13 @@ void max_heapify(int *a, int i, int n)
     return;
 }
 
+void build_maxheap(int *a , int n){
+	int i ; 
+	for (i = n/2 ; i>=1 ;i--){
+		max_heapify(a , i ,n);
+	}
+}
+
 int main ()
 {	
 	int arr[MAX] , n ,i;
@@ -51,9 +58,9 @@ int main ()
 	}
 	cout << endl ;
 
-	max_heapify(arr,1,n);
+	build_maxheap(arr , n) ;
 
-	cout << "after first max_heapify\n" ;
+	cout << "after build_maxheap\n" ;
 	for (int i = 1 ; i<= n ; i++){
 		cout << arr[i] << "\t" ;
 	}
