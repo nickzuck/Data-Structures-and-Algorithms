@@ -2,66 +2,64 @@
 
 #include<iostream>
 #include<cmath>
+#include<algorithm>
 
-#define MAX 10
+#define MAX 100
 
 using namespace std ;
 
-int arr[MAX] ;
-
-void swap(int &a , int &b){
-	int temp = b ; 
-	b = a ;
-	a= temp ;
+inline void swap(int &a , int &b){
+	int temp = b; 
+	b = a ; 
+	a = temp ;
 }
 
-
-void maxheapify(int i , int n) {
-	int l ,r , largest;
-
-	l = 2*i ; 
-	r = 2*i +1 ;
-
-	if (l < n  && arr[l] > arr[i])
-		largest = i;
-	else
-		largest = l ; 
-
-	if(r<n && arr[r] > arr[largest])
-		largest = r ; 
-	if(largest != i){
-		swap(arr[i],arr[largest]) ;
-		maxheapify(largest , n) ; 
+void max_heapify(int *arr , int i , int n ){
+	int left , right, largest  ; 
+	left = 2*i ; 
+	right = left +1 ;
+	//largest = i ;
+	//for left-subtree
+	if(left <= n && arr[left] > arr[i]){
+		largest = left ; 
 	}
-}
-
-/*We can use the procedure maxheapify in a bottom up manner to convert the array into max-heap.So to build heap we need to use the maxheapify procedure from a.length/2 downto 1 */
-
-void build_maxheap(int n){
-	for(int i = n/2 ; i>=1 ; i--){
-		maxheapify(i , n) ;
+	else {
+		largest = i ;
 	}
-}
-
-void heapsort(int n ){
-	build_maxheap(n);
-	for (int i = n ; i>=2 ; i--){
-		swap(arr[1] , arr[i]);
-		n -- ;
-		maxheapify(1 , n) ;
+	
+	//for right-subtree
+	if(right <= n && arr[right]> arr[largest]){
+		largest = right ; 
 	}
-}
-int main()
-{
- 	int i , n  ; 
 
-	cout << "Enter the number of elements\t" ; 
-	cin >> n  ; 
+	if (largest != i){
+		swap(arr[i] , arr[largest]) ;
+	}
+	max_heapify(arr , largest , n) ;
+
+}
+
+int main ()
+{	
+	int arr[MAX] , n ,i;
+	cout << "Enter the number of array elements\t";
+	cin >> n ; 
 	cout << "Enter the elements of the array\n" ;
-	for(int i=1  ; i<= n ;i++){
+	for (i=1 ; i<=n ;i++){
 		cin >> arr[i] ;
 	}
 
-		heapsort(n);
+	cout <<"Entered array\n" ;
+	for (int i = 1 ; i<= n ; i++){
+		cout << arr[i] << "\t" ;
+	}
+	cout << endl ;
+
+	max_heapify(arr,1,n);
+
+	cout << "after first max_heapify\n" ;
+	for (int i = 1 ; i<= n ; i++){
+		cout << arr[i] << "\t" ;
+	}
 return 0 ; 
 }
