@@ -27,7 +27,11 @@ int main ()
 			break ; 
 		}
 	}
-	cout << "The element is located at the position " << i << endl ;
+	if (i!= n){
+		cout << "The element is located at the position " << i << endl ;
+	}
+	else
+		cout <<"Element not found" ;
 return 0 ; 
 }
 
