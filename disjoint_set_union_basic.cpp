@@ -32,10 +32,7 @@ void union_set(int source , int destination)
 	//if a element set number belongs to source set number..then change it's set number to destination set number
     	for(int i = 0 ;i<n ;i++){
 		if(storage[i] == temp){
-			cout << "Inside if\n" ;
-			cout << storage[i] << "  "<< storage[destination] << endl;
 			storage[i] = storage[destination];			
-			cout << storage[i] << "  " << storage[destination] << endl;
 		}
 	}
 }
@@ -66,13 +63,13 @@ void displayStorage(){
 int main()
 {
 	int arr[MAX] , n , t;
-	cout << "Enter the number of elements in the array.Min - 10...Max limit(" << MAX << ")\t";
+	cout << "Enter the number of elements..Min - 10...Max limit(" << MAX << ")\t";
 	cin >> n ;
 	lenStorage = n ; 
-	cout << "Enter the elements of the array\n";
-	for(int i = 0 ; i<n ;i++){
-		cin >> arr[i];
-	}
+	//cout << "Enter the elements of the array\n";
+	//for(int i = 0 ; i<n ;i++){
+	//	cin >> arr[i];
+	//}
 	
 	make_set(arr);
 	cout << "After make set\n";
@@ -87,5 +84,14 @@ int main()
 	union_set(9,3);
 	cout << "After union of 4 ,3 , 8 ,9\n" ;
 	displayStorage();
+
+	cout << "Set of element with index 4 = ";
+	cout << find_set(4) << endl;
+
+	cout << "Is 1 and 2 connected ? " ;
+	if(isConnected)
+		cout << "True" << endl ;
+	else
+		cout << "False" << endl;
 return 0 ; 
 }
