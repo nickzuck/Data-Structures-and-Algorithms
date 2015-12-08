@@ -9,13 +9,28 @@ int arr[MAX];
 int tree[2*MAX + 1];
 
 //function definition
-void update();
+void update(int node, int a, int b, int i, int j , int value);
 void query();
 void build_tree(int , int , int );
 
 //function to find the middle value
 inline int getMid (int a , int b){
     return (a+b)/2;
+}
+
+inline int max(int a , int b , int c){
+    if (a > b){
+        if(a > c)
+            return a ;
+        else 
+            return c ;
+    }
+    else{
+        if(b > c)
+            return b ;
+        else 
+            return c ;
+    }
 }
 
 //Build segment tree
@@ -30,7 +45,7 @@ void build_tree(int node , int a , int b){
     int mid = getMid(a , b);
     build_tree(node*2 , a , mid);
     build_tree(node*2+1 , mid+1 , b );
-    tree[node] = tree[node*2] + tree[node*2 + 1] ;
+    tree[node] = max(tree[node*2] + tree[node*2 + 1] , tree[node*2] , tree[node*2 + 1]);
 }
 
 //Driver Program
