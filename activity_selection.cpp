@@ -12,11 +12,14 @@ pair<int , int>  a[MAX];
 
 void selectActivities(int n){
     int last , count = 0 ;
+    //initialization
     last = -1 ;
     for(int i = 0 ; i<n ;i++){
+        //select the activity if the start time is greater than the last activity finish time
         if(a[i].second >= last){
             cout << "Activity " << i+1 << endl; 
             count ++ ;
+            //change the finish time of last activity
             last = a[i].first ;
         }
     }
@@ -34,7 +37,7 @@ int main()
         cin >> a[i].second >> a[i].first ; 
     }
 
-    //sort accordin to the first one i.e finish time
+    //sort according to the first one i.e finish time
     sort(a , a+n);
 
     selectActivities(n);
