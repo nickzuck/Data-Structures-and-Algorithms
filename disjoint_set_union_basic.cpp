@@ -1,4 +1,5 @@
 /*Basic and naive implementation of disjoint set data structure*/
+//Time Complexity : O(n^2)
 
 #include<iostream>
 #include<algorithm>
@@ -38,7 +39,7 @@ void union_set(int source , int destination)
 }
 
 
-//find the set number of the element
+//find the set number of the given index 
 int find_set(int element){
 	return storage[element];
 }
@@ -63,6 +64,7 @@ void displayStorage(){
 int main()
 {
 	int arr[MAX] , n , t;
+    //Minimum is 10 because the driver program contains the driver for numbers between 1 to 10
 	cout << "Enter the number of elements..Min - 10...Max limit(" << MAX << ")\t";
 	cin >> n ;
 	lenStorage = n ; 
