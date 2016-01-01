@@ -1,5 +1,5 @@
-// Implementation of disjoin set union find by parent array representation
-// Time Complexity : O(N)
+// Implementation of disjoin set union find by parent array representation and weighted union
+// Time Complextiy : O(log2N)
 
 #include<iostream>
 #include<algorithm>
@@ -12,11 +12,15 @@ using namespace std ;
 //store the parent corresponding to the index
 //initially the parent of index is the index itself
 int parent[MAX];
+// Will keep track of size of each subset
+int size[MAX];
 int lenParent ; 
 
 void makeSet(){
     for(int i = 0; i<lenParent ;i++){
         parent[i] = i;
+        // Modified to contain the size of the subset
+        size[i] = 1 ;
     }
 }
 
@@ -32,10 +36,17 @@ int root(int i){
 
 // Union by changing the parent of the element
 // a is being merged to b so the root of either will be changed
-int unionSet(int a, int b){ 
+int weighted_union(int a, int b){ 
     int rootA = root(a);
     int rootB = root(b) ;
-    parent[rootA] = rootB ;
+    if (size[rootA] < size[rootB]){
+        parent[rootA] = rootB ;
+        size[rootB] += size[rootA];
+    }
+    else{
+        parent[rootB] = rootA;
+        size[rootA] += size[rootB] ;
+    }
 }
 
 //The elements are in same set if their roots are same
@@ -72,13 +83,13 @@ int main()
     cout << "After make set \n";
     displayParents();
 
-    unionSet(2,1);
+    weighted_union(2,1);
     cout << "After union of 1 and 2\n" ; 
     displayParents();
 
-    unionSet(4,3);
-    unionSet(8,4);
-    unionSet(9,3);
+    weighted_union(4,3);
+    weighted_union(8,4);
+    weighted_union(9,3);
     cout << "After union of 4,3,8,9 \n";
     displayParents();
 
